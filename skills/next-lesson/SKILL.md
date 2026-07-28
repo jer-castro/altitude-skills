@@ -21,6 +21,16 @@ Requires `learning/plan.md` and `learning/knowledge-graph.md`. If missing, point
 - Unplanned sessions are lessons too. A breakage fix, a tool install, a side quest — if it changed the project, it closes the loop like any task: graph, file map, and a suggested commit before you stop.
 - Be honest in the graph. Understanding they don't have is a debt that comes due mid-project.
 
+## Knowledge altitudes
+
+Three altitudes of technical knowledge. Dwell in Levels 1 and 3; Level 2 is glue, not the destination:
+
+- **Level 1 — system story**: how the pieces fit to deliver a result, and how they should safely evolve (trunk, locked decisions, boundaries between parts).
+- **Level 2 — implementation glue**: the syntax and APIs that make something run. Necessary, but making it work is not the same as thinking. Do not treat "it works" as understanding.
+- **Level 3 — machine at this stack's scale**: why the computer stops being magic *here* — process memory vs data on disk, request vs response, ports, isolation, safety rails. Without this, Level 1 advice is slogans.
+
+Prefer concepts and checks that exercise Level 1 or Level 3. Level 2 typing is allowed; dwelling there is the failure mode.
+
 ## Step 1 — Orient
 
 Read `learning/plan.md` and `learning/knowledge-graph.md`. Find the current section and task. Tell the learner in one or two sentences where they are and what this task will accomplish. Every word you emit is read by the learner as you work — including notes between tool calls while orienting; there is no private scratchpad. Never refer to the learner in the third person ("the learner", "she") and never open with internal verification notes. If a check is worth narrating, narrate it to them: "One sec — checking that `psql` is on your PATH so you don't hit a confusing error."
@@ -49,7 +59,7 @@ Work through the task in small increments. Use these moves, choosing based on th
 - **Explain-then-write**: before each chunk of code, one or two sentences on what it will do and why.
 - **Placeholders**: leave 1–3 deliberate gaps for the learner to fill — marked `// TODO(you): ...` — sized to their level (a value, a line, or a small block for concepts at `practicing`+). Review their fill-ins; if wrong, guide rather than correct.
 - **Predict-before-run**: before running any new code or command, ask them to predict what will happen. Then run it and compare against the prediction. A wrong prediction is the best teaching moment in this whole skill — dig into the gap.
-- **Quiz opportunistically**: when a concept appears that is `seed` or `introduced` in the graph, teach it and check it (one question, in-context — "what would happen if we removed this line?"). **Do not re-quiz** concepts that are `understood` and fresh; that's just friction.
+- **Quiz opportunistically**: when a concept appears that is `seed` or `introduced` in the graph, teach it and check it (one question, in-context). Prefer Level 1 / Level 3 shapes — "walk the path from input to result," "what breaks if we delete this," "why does this survive a restart" — over pure syntax recall. **Do not re-quiz** concepts that are `understood` and fresh; that's just friction.
 - **Break it on purpose** (occasionally, ~every third lesson): once something works, deliberately break one thing — a typo'd variable, a removed line — and have them predict the failure before running. Then fix it together. Reading errors calmly is a superpower; build it early.
 
 **Fill-ins happen in the file, not the chat.** Write the skeleton with its `// TODO(you)` blanks into the actual file, then tell the learner: fill them in your editor and hit save — I'm watching the file. Watch by polling the file's modification time in a Bash call for a few minutes (portable: `stat -f %m "$f" 2>/dev/null || stat -c %Y "$f"` in a sleep loop), then read what they actually saved and respond to their real code. Never ask them to paste code into chat — chat is for predictions and explanations. If the watch window expires with no save, treat the silence as a struggle signal: say so warmly, offer one hint, and watch again. If they'd rather answer in chat first (or they interrupt), answer, then re-arm the watch.
@@ -60,7 +70,7 @@ If the agent (you) generated code containing a concept the learner hasn't seen, 
 
 ## Step 4 — Close the loop
 
-1. Update `learning/knowledge-graph.md`: add new concepts, upgrade statuses **only on evidence** (explained in own words / correct prediction / passed quiz / correct fill-in), set `introduced` and `last-reviewed` dates, and record one line of evidence. Evidence lines record only what the learner themselves said or did — never credit them with actions you performed, and never embellish beyond what actually happened in the conversation. One ceiling: a concept never reaches `understood` on the day it was introduced — cap first contact at `practicing`, however strong the lesson. One great session proves performance; only a later retrieval (a passed review after days away) proves it stuck, and that's what `understood` means.
+1. Update `learning/knowledge-graph.md`: add new concepts, upgrade statuses **only on evidence** (explained in own words / correct prediction / passed quiz / correct fill-in), set `introduced` and `last-reviewed` dates, and record one line of evidence. On **new** leaves only, optionally tag `altitude: system | glue | machine` (Level 1 / 2 / 3) — do not backfill or regrade existing entries. Evidence lines record only what the learner themselves said or did — never credit them with actions you performed, and never embellish beyond what actually happened in the conversation. One ceiling: a concept never reaches `understood` on the day it was introduced — cap first contact at `practicing`, however strong the lesson. One great session proves performance; only a later retrieval (a passed review after days away) proves it stuck, and that's what `understood` means.
 2. Update `learning/file-map.md` with every file today's lesson created or made meaningful: files the learner authored enter as `known` (authorship is evidence); files you generated enter as `known` only if toured, otherwise `parked` with the section where they come due. The invariant to leave behind: nothing on disk is missing from the map.
 3. Mark the task done in `plan.md`. If the section's deliverable is reached, celebrate concretely (show them what they can now demo) and suggest a git commit with a message they write themselves.
 4. End with a one-line recap of the new leaves added to their tree, and remind them: run `/next-lesson` when ready. **Never ship a line of code you can't explain.**

@@ -20,6 +20,16 @@ The tone rule that governs everything: **this is an inventory, not an exam.** Ar
 - Never close while a question is pending.
 - Resumable by design: each phase ends by writing its artifact, **complete at write time** — no placeholder sections to fill in next session. A half-seeded graph that looks finished is worse than a missing one.
 
+## Knowledge altitudes
+
+Three altitudes of technical knowledge. Dwell in Levels 1 and 3; Level 2 is glue, not the destination:
+
+- **Level 1 — system story**: how the pieces fit to deliver a result, and how they should safely evolve (trunk, locked decisions, boundaries between parts).
+- **Level 2 — implementation glue**: the syntax and APIs that make something run. Necessary, but making it work is not the same as thinking. Do not treat "it works" as understanding.
+- **Level 3 — machine at this stack's scale**: why the computer stops being magic *here* — process memory vs data on disk, request vs response, ports, isolation, safety rails. Without this, Level 1 advice is slogans.
+
+Prefer concepts and checks that exercise Level 1 or Level 3. Level 2 typing is allowed; dwelling there is the failure mode.
+
 ## Phase 0 — Find where you are
 
 Read `learning/` before anything else:
@@ -52,13 +62,13 @@ Write `learning/project.md`: about me (including how the app was built), the ide
 
 ## Phase 2 — The understanding inventory → `learning/file-map.md` + `learning/knowledge-graph.md`
 
-**Probes first — 5 to 8, hard budget.** Sample one spot per layer of *their actual code*: a UI piece, a server or API path, wherever data gets read or written, one config file — biased toward what they said scares them and what the plan will touch first. Use the same moves lessons use: "walk me through what happens when someone clicks save," "what would break if I deleted this line?" An answer in their own words is evidence; a wrong answer is calibration, received warmly. Stop at 8 even if you're curious — the inventory doesn't need to be complete, the defaults cover the rest.
+**Probes first — 5 to 8, hard budget.** Sample one spot per layer of *their actual code*: a UI piece, a server or API path, wherever data gets read or written, one config file — biased toward what they said scares them and what the plan will touch first. Prefer Level 1 / Level 3 shapes over syntax quizzes: "walk me through what happens when someone clicks save," "what would break if I deleted this line," "why does this data survive a restart?" An answer in their own words is evidence; a wrong answer is calibration, received warmly. Stop at 8 even if you're curious — the inventory doesn't need to be complete, the defaults cover the rest.
 
 **Then the map.** Create `learning/file-map.md` covering everything on disk, same grain rules as always: a folder is one entry until its contents differentiate; generated directories (`node_modules/`, build output) are permanent one-liners — machine-made, never edit, always rebuildable; entries record *why a file exists*, not what's inside, linked to concepts with `→ [[concept-name]]`. Statuses from evidence only: `known` for what they explained in the probes, `generated` for machine-made, **everything else `parked`** with an honest one-liner naming when it comes due. Expect it to be parked-heavy and say so out loud: "this is the honest ledger — every parked line is a lesson we've already scheduled."
 
 Walk the 4–6 files that matter most in the chat as you build it — the tour is the point, the file is its receipt.
 
-**Then seed the graph.** Create `learning/knowledge-graph.md` (same format as greenfield: statuses `seed → introduced → practicing → understood`, `depends-on`, dates, one-line evidence). One entry per concept this codebase embodies, plus the engineering practices it's *missing* (git, testing, environment variables — absence is curriculum too). Probe results set statuses; concepts reasoned through in today's conversation enter as `introduced`; everything else is `seed`.
+**Then seed the graph.** Create `learning/knowledge-graph.md` (same format as greenfield: statuses `seed → introduced → practicing → understood`, optional `altitude: system | glue | machine`, `depends-on`, dates, one-line evidence). One entry per concept this codebase embodies, plus the engineering practices it's *missing* (git, testing, environment variables — absence is curriculum too). Bias seeds toward Level 1 and Level 3; include Level 2 only when load-bearing. Probe results set statuses; concepts reasoned through in today's conversation enter as `introduced`; everything else is `seed`. Do not backfill altitude on leaves you are not creating today.
 
 Offer a pause.
 

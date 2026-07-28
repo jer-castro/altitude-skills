@@ -17,6 +17,16 @@ Requires `learning/project.md`. If it doesn't exist, say so and offer to run `/s
 - Never close while a question is pending. If the learner's latest message contains a question, or their answer to a check was wrong or incomplete, address that first — then wrap up. Writing the state files does not excuse skipping feedback on their final answer.
 - Sections only in the plan — **no task-level breakdown yet**. Tasks are broken down one section at a time later by `/next-lesson`, so the plan stays legible.
 
+## Knowledge altitudes
+
+Three altitudes of technical knowledge. Dwell in Levels 1 and 3; Level 2 is glue, not the destination:
+
+- **Level 1 — system story**: how the pieces fit to deliver a result, and how they should safely evolve (trunk, locked decisions, boundaries between parts).
+- **Level 2 — implementation glue**: the syntax and APIs that make something run. Necessary, but making it work is not the same as thinking. Do not treat "it works" as understanding.
+- **Level 3 — machine at this stack's scale**: why the computer stops being magic *here* — process memory vs data on disk, request vs response, ports, isolation, safety rails. Without this, Level 1 advice is slogans.
+
+Prefer concepts and checks that exercise Level 1 or Level 3. Level 2 typing is allowed; dwelling there is the failure mode.
+
 ## Phase 1 — Walk the design decisions, one at a time
 
 Open by sketching the session's shape in two or three lines before the first question: we'll make the stack decisions together one at a time (so you own every choice in this project), then structure the build into sections that each end in something you can see working, then write it all down — the plan, your knowledge graph, and a map of every file. Then start.
@@ -53,9 +63,11 @@ Format — one entry per concept, seeded from the trunk, the locked design decis
 
 <!-- statuses: seed → introduced → practicing → understood -->
 <!-- seed: not yet taught | introduced: explained once | practicing: used it with help | understood: explained in own words + passed a quiz -->
+<!-- altitude (optional): system = Level 1 | glue = Level 2 | machine = Level 3 -->
 
 ## <concept-name>
 - status: seed
+- altitude: system | glue | machine
 - depends-on: <other concept(s), or none>
 - introduced: —
 - last-reviewed: —
@@ -64,7 +76,7 @@ Format — one entry per concept, seeded from the trunk, the locked design decis
 
 Concepts already explained-and-checked during Phase 1 (e.g., "why we chose this language") start as `introduced` with today's date, not `seed`.
 
-Concepts span every altitude: low-level (variables, loops, functions), structural (files talking to each other, dependencies, package.json), engineering practice (git commits, testing, environment variables), and AI-era practice (writing a good plan, reviewing a diff, CLAUDE.md / agent memory).
+Seed with a bias toward Level 1 (system story) and Level 3 (machine at this stack's scale); include Level 2 (glue) leaves only when they are load-bearing for a later check. Concepts still span the full range: low-level syntax when needed, structural (files talking to each other, dependencies, package manifests), engineering practice (git commits, testing, environment variables), and AI-era practice (writing a good plan, reviewing a diff, agent memory files). Tag new leaves with optional `altitude: system | glue | machine` — do not backfill later.
 
 Then create `learning/file-map.md` — the map of the project's territory. Explain it in one line: *nothing in your repo should ever be a mystery box — every file and folder is either explained here or explicitly parked.* Seed it with the only files that exist so far, the learning files themselves:
 

@@ -94,13 +94,17 @@ explain how my app works end to end.
 Read learning/project.md and learning/plan.md. Create my living knowledge graph
 at learning/knowledge-graph.md — the map of what I actually know. It gets
 updated after every lesson, and it's the thing that decides what I get quizzed
-on. Seed one entry per concept this project will teach me, spanning every level:
-low-level (variables, loops, functions), structural (files talking to each
-other, dependencies, package.json), engineering practice (git commits, testing,
-environment variables), and AI-era practice (writing a good plan, reviewing a
-diff, agent memory files). Each entry gets a status — seed (not yet taught) →
-introduced (explained once) → practicing (used it with help) → understood
-(explained in my own words and passed a quiz on a later day) — plus introduced/last-reviewed
+on. Seed one entry per concept this project will teach me, biased toward
+system-story concepts (how pieces fit) and machine-level concepts (why the
+computer stops being magic at this stack's scale — process vs disk, request vs
+response, ports, isolation). Include syntax/API "glue" leaves only when they're
+load-bearing for a later check. Still span the full range: structural (files
+talking to each other, dependencies, package manifests), engineering practice
+(git commits, testing, environment variables), and AI-era practice (writing a
+good plan, reviewing a diff, agent memory files). Each entry gets a status —
+seed (not yet taught) → introduced (explained once) → practicing (used it with
+help) → understood (explained in my own words and passed a quiz on a later day)
+— plus an optional altitude tag (system | glue | machine), introduced/last-reviewed
 dates and a one-line evidence field. Statuses only ever upgrade on evidence of
 something I actually said or did, and I shouldn't be re-quizzed on concepts that
 are understood and fresh. Anything we already walked through and checked while
@@ -134,10 +138,14 @@ when my prediction is wrong, slow down and dig into the gap, because that's
 where the learning is. When a command creates new files (scaffolds, installers),
 walk me through the 4–6 that matter in plain language and park the rest in the
 file map — never build on files I can't account for. Quiz me on graph concepts
-as they come up — always open questions I answer in my own words, never
-multiple choice — but never re-quiz what's marked understood and fresh. At the
+as they come up — prefer questions about how pieces fit or what the machine is
+doing ("walk the path from input to result," "what breaks if we delete this,"
+"why does this survive a restart") over pure syntax recall — always open
+questions I answer in my own words, never multiple choice — but never re-quiz
+what's marked understood and fresh. At the
 end: update learning/knowledge-graph.md (statuses upgrade only on evidence of
-what I actually did) and learning/file-map.md (files I authored count as known),
+what I actually did; optionally tag new leaves altitude: system | glue | machine,
+no backfill) and learning/file-map.md (files I authored count as known),
 check the task off in learning/plan.md, give me a one-line recap of the new
 leaves on my tree, and stop there. If I arrive wanting to build something
 that's not in the plan, don't refuse and don't just build it: help me place it
@@ -193,11 +201,14 @@ else — expect mostly parked, that's the point, every parked line is a lesson
 we've scheduled. Walk me through the 4-6 files that matter most in plain
 language. Then create learning/knowledge-graph.md seeded with one entry per
 concept this codebase embodies plus the engineering practices it's missing
-(git, testing, environment variables), each with a status — seed (not yet
-taught) → introduced (explained once) → practicing (used it with help) →
-understood (explained in my own words and passed a quiz on a later day) —
-plus dates and a one-line evidence field. My probe answers set the statuses;
-everything unprobed starts at seed.
+(git, testing, environment variables), biased toward system-story and
+machine-level concepts; include glue/syntax leaves only when load-bearing.
+Each entry gets a status — seed (not yet taught) → introduced (explained
+once) → practicing (used it with help) → understood (explained in my own
+words and passed a quiz on a later day) — plus an optional altitude tag
+(system | glue | machine), dates, and a one-line evidence field. My probe
+answers set the statuses; everything unprobed starts at seed. Do not
+backfill altitude on leaves you are not creating today.
 ```
 
 **Adoption 3 — The forward plan:**

@@ -79,6 +79,7 @@ Copied skills don't auto-update — re-run the clone + copy to pick up new versi
 - One small step at a time. The pause between lessons is the pedagogy.
 - Predict before you run. A wrong prediction is the best teacher you'll meet.
 - Quizzes come from *your* graph — you're never re-quizzed on what you've already demonstrated (and still remember).
+- Prefer system-story and machine-level understanding over syntax for its own sake — making it run is glue, not the destination.
 - No mystery boxes: every file in your repo is either explained or explicitly parked. When a scaffold dumps fifteen files into your folder, you get the tour before you build on them.
 - **Never ship a single line of code you cannot explain.**
 
