@@ -112,8 +112,9 @@ planning starts as introduced, not seed. Also create learning/file-map.md — a
 map of every file and folder in the project, one line each on what it is and why
 it exists, marked known (I explained it in my own words), parked (honest
 one-liner for now, deep dive scheduled), or generated (machine-made, never
-edit). Nothing in my repo should ever be a mystery box. Start it with the
-learning/ files themselves.
+edit). Nothing in my repo should ever be a mystery box. Seed it with the
+learning/ files as one-liners. Ask once whether this is my first time with these
+skills; explain what those learning files are only if I say yes.
 ```
 
 Steps 2–6 take an hour or two with the AI's help. Now the tire meets the road.
@@ -127,8 +128,12 @@ Read learning/plan.md, learning/knowledge-graph.md, and learning/file-map.md,
 then let's execute the next task — just that one task; I'll come back for the
 next one. If the current section isn't broken into tasks yet, break this section
 only into 3–7 small tasks, each ending in something I can see working, and add
-them to the plan as checkboxes. If anything on disk isn't accounted for in the
-file map, tour it or park it with an honest one-liner before we build. Then
+them to the plan as checkboxes — product tasks I can see working in the app or
+the toolchain, not a tour of the learning files. If the next checkbox is only
+that tour, skip it and do the next product task. If anything on disk isn't
+accounted for in the file map, tour it or park it with an honest one-liner
+before we build — the actual project, not the learning/ files. If the file map
+is missing, create it and walk the 4-6 project files that matter most. Then
 teach as you go: before each chunk of code, explain in plain language what it
 does and why it's there. Take really small steps — never dump a big block of
 code on me. Leave 1–3 blanks marked "TODO(you)" in the actual file for me to
@@ -198,8 +203,10 @@ learning/file-map.md covering everything on disk, one line each on why it
 exists: known only for what I explained myself, generated for machine-made
 folders like node_modules, and parked with an honest one-liner for everything
 else — expect mostly parked, that's the point, every parked line is a lesson
-we've scheduled. Walk me through the 4-6 files that matter most in plain
-language. Then create learning/knowledge-graph.md seeded with one entry per
+we've scheduled. Walk me through the 4-6 files of my app that matter most in
+plain language; park the learning/ files as one-liners. Ask once whether this is
+my first time with these skills; explain what those learning files are only if I
+say yes. Then create learning/knowledge-graph.md seeded with one entry per
 concept this codebase embodies plus the engineering practices it's missing
 (git, testing, environment variables), biased toward system-story and
 machine-level concepts; include glue/syntax leaves only when load-bearing.

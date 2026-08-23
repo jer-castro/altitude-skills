@@ -16,6 +16,7 @@ Requires `learning/project.md`. If it doesn't exist, say so and offer to run `/s
 - Understanding checks are free recall, never multiple choice: never use a multiple-choice panel (the AskUserQuestion tool) for anything with a right answer — ask in plain chat and let them answer in their own words. The panel is fine for the decisions themselves, where the learner is genuinely choosing.
 - Never close while a question is pending. If the learner's latest message contains a question, or their answer to a check was wrong or incomplete, address that first — then wrap up. Writing the state files does not excuse skipping feedback on their final answer.
 - Sections only in the plan — **no task-level breakdown yet**. Tasks are broken down one section at a time later by `/next-lesson`, so the plan stays legible.
+- Ask once whether this is their first time with these skills. Only if they say yes: the opening sketch, and one line each on what the knowledge graph and file map are. Always write the files. Seed the map with `learning/` as one-liners; the territory worth walking is the actual project, once it exists.
 
 ## Knowledge altitudes
 
@@ -29,7 +30,7 @@ Prefer concepts and checks that exercise Level 1 or Level 3. Level 2 typing is a
 
 ## Phase 1 — Walk the design decisions, one at a time
 
-Open by sketching the session's shape in two or three lines before the first question: we'll make the stack decisions together one at a time (so you own every choice in this project), then structure the build into sections that each end in something you can see working, then write it all down — the plan, your knowledge graph, and a map of every file. Then start.
+First-time sitting only, open by sketching the session's shape in two or three lines before the first question: we'll make the stack decisions together one at a time (so you own every choice in this project), then structure the build into sections that each end in something you can see working, then write it all down — the plan, your knowledge graph, and a map of every file. Then start. Otherwise start with the first stack decision.
 
 Before any plan exists, the stack decisions must be made — and the learner must own them. For each decision the project needs (language, frontend approach, backend, database, hosting/deployment, anything project-specific):
 
@@ -54,7 +55,7 @@ Sanity-check the sequence with the learner: does each step make sense as a story
 
 ## Phase 3 — Seed the knowledge graph
 
-Create `learning/knowledge-graph.md`. Explain it in one line: *this file is the map of what you actually know — it gets updated every lesson, and it's the thing that decides what you get quizzed on.*
+Create `learning/knowledge-graph.md`. First-time sitting only, explain it in one line: *this file is the map of what you actually know — it gets updated every lesson, and it's the thing that decides what you get quizzed on.*
 
 Format — one entry per concept, seeded from the trunk, the locked design decisions, and every section's concept list:
 
@@ -78,7 +79,7 @@ Concepts already explained-and-checked during Phase 1 (e.g., "why we chose this 
 
 Seed with a bias toward Level 1 (system story) and Level 3 (machine at this stack's scale); include Level 2 (glue) leaves only when they are load-bearing for a later check. Concepts still span the full range: low-level syntax when needed, structural (files talking to each other, dependencies, package manifests), engineering practice (git commits, testing, environment variables), and AI-era practice (writing a good plan, reviewing a diff, agent memory files). Tag new leaves with optional `altitude: system | glue | machine` — do not backfill later.
 
-Then create `learning/file-map.md` — the map of the project's territory. Explain it in one line: *nothing in your repo should ever be a mystery box — every file and folder is either explained here or explicitly parked.* Seed it with the only files that exist so far, the learning files themselves:
+Then create `learning/file-map.md` — the map of the project's territory. First-time sitting only, explain it in one line: *nothing in your repo should ever be a mystery box — every file and folder is either explained here or explicitly parked.* Seed it with the learning files as one-liners (receipts, not a tour). Once the project has files of its own, those are the territory:
 
 ```markdown
 # File map

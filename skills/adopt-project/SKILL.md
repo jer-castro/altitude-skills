@@ -19,6 +19,7 @@ The tone rule that governs everything: **this is an inventory, not an exam.** Ar
 - Triage is a recommendation, never a gate. Show your reasoning; if they insist on adopting against it, name the trade once and adopt wholeheartedly.
 - Never close while a question is pending.
 - Resumable by design: each phase ends by writing its artifact, **complete at write time** — no placeholder sections to fill in next session. A half-seeded graph that looks finished is worse than a missing one.
+- Ask once whether this is their first time with these skills. Only if they say yes: the Phase 0 shape of the journey, and one line each on what the knowledge graph and file map are. Always walk 4–6 files of their actual app in Phase 2. Always mark where they are, especially on a resume.
 
 ## Knowledge altitudes
 
@@ -40,7 +41,7 @@ Read `learning/` before anything else:
 
 When resuming, treat prior artifacts as receipts: verify their ground-truth claims against the disk first (stack, git state, file inventory); if they hold, carry forward the learner-evidence they record rather than making the learner re-prove it — say you're doing so, and offer to downgrade anything that feels too generous. Evidence a prior session never wrote down doesn't exist: redo that work, don't reconstruct it from guesswork.
 
-However you enter, **orient before you dig**: show the learner the shape of the whole journey in a few short lines — the three phases, what each produces, and why it's there. First **triage**: an honest look at what you have and a decision about what to keep (you get `project.md`). Then the **understanding inventory**: finding out what you can already explain — no shame attached (you get a file map with no mystery boxes and a knowledge graph that tells the truth). Then the **forward plan**: sequencing what you'll build and what you'll reclaim (you get `plan.md`, and `/next-lesson` takes over from there). Mark where they are on that map — especially on a resume — and mention that each phase ends with an offered stopping point. Then begin.
+However you enter, mark where they are and begin. First-time sitting only, **orient before you dig**: show the learner the shape of the whole journey in a few short lines — the three phases, what each produces, and why it's there. First **triage**: an honest look at what you have and a decision about what to keep (you get `project.md`). Then the **understanding inventory**: finding out what you can already explain — no shame attached (you get a file map with no mystery boxes and a knowledge graph that tells the truth). Then the **forward plan**: sequencing what you'll build and what you'll reclaim (you get `plan.md`, and `/next-lesson` takes over from there). Mention that each phase ends with an offered stopping point.
 
 ## Phase 1 — Triage and trim → `learning/project.md`
 
@@ -66,7 +67,7 @@ Write `learning/project.md`: about me (including how the app was built), the ide
 
 **Then the map.** Create `learning/file-map.md` covering everything on disk, same grain rules as always: a folder is one entry until its contents differentiate; generated directories (`node_modules/`, build output) are permanent one-liners — machine-made, never edit, always rebuildable; entries record *why a file exists*, not what's inside, linked to concepts with `→ [[concept-name]]`. Statuses from evidence only: `known` for what they explained in the probes, `generated` for machine-made, **everything else `parked`** with an honest one-liner naming when it comes due. Expect it to be parked-heavy and say so out loud: "this is the honest ledger — every parked line is a lesson we've already scheduled."
 
-Walk the 4–6 files that matter most in the chat as you build it — the tour is the point, the file is its receipt.
+Walk the 4–6 files of their app that matter most in the chat as you build it — the tour is the point, the file is its receipt. Park `learning/` as one-liners.
 
 **Then seed the graph.** Create `learning/knowledge-graph.md` (same format as greenfield: statuses `seed → introduced → practicing → understood`, optional `altitude: system | glue | machine`, `depends-on`, dates, one-line evidence). One entry per concept this codebase embodies, plus the engineering practices it's *missing* (git, testing, environment variables — absence is curriculum too). Bias seeds toward Level 1 and Level 3; include Level 2 only when load-bearing. Probe results set statuses; concepts reasoned through in today's conversation enter as `introduced`; everything else is `seed`. Do not backfill altitude on leaves you are not creating today.
 
