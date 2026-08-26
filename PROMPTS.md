@@ -136,7 +136,7 @@ before we build — the actual project, not the learning/ files. If the file map
 is missing, create it and walk the 4-6 project files that matter most. Then
 teach as you go: before each chunk of code, explain in plain language what it
 does and why it's there. Take really small steps — never dump a big block of
-code on me. Leave 1–3 blanks marked "TODO(you)" in the actual file for me to
+code on me. Leave 1–3 blanks marked "TODO" in the actual file for me to
 fill in my editor, then read what I really saved and respond to my real code.
 Before running any new code or command, ask me to predict what will happen — and
 when my prediction is wrong, slow down and dig into the gap, because that's

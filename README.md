@@ -69,7 +69,7 @@ Copied skills don't auto-update — re-run the clone + copy to pick up new versi
 - **From then on, it's `/next-lesson`, over and over.** That's the whole loop, for months. One lesson is one small task — expect 30–60 minutes, 3–5 sittings a week.
 - **One lesson per sitting — really.** Don't binge five in a night. The gap between sessions is where memory consolidates, and it's exactly what the next lesson's review quiz tests. Hungry for more is the perfect place to stop.
 - **Start each sitting in a fresh session.** Everything the tutor needs to remember lives in `learning/` — a brand-new session picks up exactly where the last one left off.
-- **Do the typing yourself.** When the tutor dictates a command, you run it in your terminal. When it leaves `TODO(you)` blanks, fill them in your editor and hit save — it's watching the file, not the chat.
+- **Do the typing yourself.** When the tutor dictates a command, you run it in your terminal. When it leaves `TODO` blanks, fill them in your editor and hit save — it's watching the file, not the chat.
 - **Answer quizzes from your head, in your own words.** Don't look it up first. A wrong answer isn't a failure — it's the data that decides what gets taught next.
 - **Life happens — bring it to the lesson.** Broke something on your own? Say so; that's a lesson, and a good one. Want a feature that isn't in the plan? Ask; the plan is a living backlog, not a contract.
 - **Read your `learning/` files anytime; let the lessons write them.** Graph statuses only move on demonstrated evidence — promoting yourself to `understood` by hand just cheats the quizzes that keep you honest.
