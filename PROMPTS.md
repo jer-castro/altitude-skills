@@ -63,7 +63,9 @@ the major pieces (roughly 5–9), with a high-level explanation of what each pie
 is and why this project needs it. I want to follow engineering best practices
 from day one, including source control. Once you've laid them out, check my
 understanding: have me explain one or two of the pieces back in my own words.
-Then add this trunk to learning/project.md.
+Then add this trunk to learning/project.md, plus a Teaching section with
+authorship-policy: zpd and grain: right. Use fill-in only if I have never
+written code and want rustlings-shaped skeletons.
 ```
 
 Read through the result carefully. This is the trunk — the foundation every branch and leaf will attach to.
@@ -133,13 +135,14 @@ the toolchain, not a tour of the learning files. If the next checkbox is only
 that tour, skip it and do the next product task. If anything on disk isn't
 accounted for in the file map, tour it or park it with an honest one-liner
 before we build — the actual project, not the learning/ files. If the file map
-is missing, create it and walk the 4-6 project files that matter most. Then
-teach as you go: before each chunk of code, explain in plain language what it
-does and why it's there. Take really small steps — never dump a big block of
-code on me. Leave 1–3 blanks marked "TODO" in the actual file for me to
-fill in my editor, then read what I really saved and respond to my real code.
-Before running any new code or command, ask me to predict what will happen — and
-when my prediction is wrong, slow down and dig into the gap, because that's
+is missing, create it and walk the 4-6 project files that matter most. Read
+learning/project.md for authorship-policy (default zpd) and grain. Then teach
+as you go. Name today's 20% out loud - the one decision I type. You write the
+failing test and glue; I write the 20% in my editor until green. Take really
+small steps - never dump a big block of code on me. Tiny TODO holes are not
+the default and do not count as proof I learned it. After my code exists, ask
+me to predict what will happen - and when my prediction is wrong, slow down
+and dig into the gap, because that's
 where the learning is. When a command creates new files (scaffolds, installers),
 walk me through the 4–6 that matter in plain language and park the rest in the
 file map — never build on files I can't account for. Quiz me on graph concepts
@@ -149,9 +152,11 @@ doing ("walk the path from input to result," "what breaks if we delete this,"
 questions I answer in my own words, never multiple choice — but never re-quiz
 what's marked understood and fresh. At the
 end: update learning/knowledge-graph.md (statuses upgrade only on evidence of
-what I actually did; optionally tag new leaves altitude: system | glue | machine,
+what I actually did - token fill-in never counts as practicing; optionally tag
+new leaves altitude: system | glue | machine,
 no backfill) and learning/file-map.md (files I authored count as known),
-check the task off in learning/plan.md, give me a one-line recap of the new
+check the task off in learning/plan.md, ask one grain vote (too small / right /
+overloaded) and write it under Teaching in project.md, give me a one-line recap of the new
 leaves on my tree, and stop there. If I arrive wanting to build something
 that's not in the plan, don't refuse and don't just build it: help me place it
 — promote it from the parking lot or add a new section sized like the others —
@@ -185,7 +190,9 @@ the rest, don't delete them); or, only if it can't be made to run or the stack
 is a genuinely bad teacher for a beginner, rebuild with this repo kept open as
 the reference spec. This is an inventory, not an exam — no shame anywhere.
 Record who I am, how the app was built, the MVP / frozen / parking-lot split,
-and the decision in learning/project.md.
+and the decision in learning/project.md, plus Teaching with authorship-policy:
+zpd and grain: right (fill-in only if I have never written code and want
+rustlings-shaped skeletons).
 ```
 
 **Adoption 2 — The understanding inventory:**

@@ -59,7 +59,7 @@ Now triage, reasoning shown, three outcomes with a strong bias to the first:
 - **Trim, then adopt** — when half-built features outnumber working ones, run the MVP exercise in reverse: "of everything built here, which features are actually your MVP?" Everything else is **frozen, not deleted**: it stays in the repo, moves to the parking lot, and its files get parked in the map. Frozen features are debt with a name, not failures.
 - **Rebuild with a reference** — the bar is high: only when the app can't run and can't be revived within a session, or the stack is so unusual that learning on it means learning the wrong things. Frame it as a promotion, not a funeral: "you already did the hardest part — you know exactly what you're building." The old repo becomes the spec; route them to `/start-project` with it open.
 
-Write `learning/project.md`: about me (including how the app was built), the idea, MVP **In / Frozen / Parking lot**, and the triage decision with its reasoning. Then offer a pause — "that was the heavy lifting; stop here if you like. Run `/adopt-project` again and we pick up at the walkthrough." Offered, never forced.
+Write `learning/project.md`: about me (including how the app was built), the idea, MVP **In / Frozen / Parking lot**, the triage decision with its reasoning, and a Teaching section with `authorship-policy: zpd` and `grain: right` (write `fill-in` only if they have never written code and want rustlings-shaped skeletons). Then offer a pause — "that was the heavy lifting; stop here if you like. Run `/adopt-project` again and we pick up at the walkthrough." Offered, never forced.
 
 ## Phase 2 — The understanding inventory → `learning/file-map.md` + `learning/knowledge-graph.md`
 

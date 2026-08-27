@@ -18,7 +18,7 @@ The metaphor: concepts learned in isolation are loose leaves — hard to sort, e
 |---|---|
 | `/start-project` | Interviews you for a project idea sized to your experience, defines the MVP, maps the trunk |
 | `/plan-journey` | Walks every design decision with you (and checks you understand it), builds the sectioned learning plan, seeds your knowledge graph |
-| `/next-lesson` | Executes one task: small code steps, fill-in-the-blank placeholders, predict-before-run, quizzes driven by your knowledge graph, graph update at the end |
+| `/next-lesson` | Executes one task: the learner types the 20%, you write the failing test, predict-before-run on their code, quizzes from the knowledge graph |
 | `/adopt-project` | Already have a project? Honest triage, an understanding inventory, a file map with no mystery boxes, and a forward plan with reclaim tasks — replaces the first two skills, feeds the same `/next-lesson` loop |
 
 Rather not install anything? [PROMPTS.md](PROMPTS.md) has the copy/paste version of every step.
@@ -69,7 +69,7 @@ Copied skills don't auto-update — re-run the clone + copy to pick up new versi
 - **From then on, it's `/next-lesson`, over and over.** That's the whole loop, for months. One lesson is one small task — expect 30–60 minutes, 3–5 sittings a week.
 - **One lesson per sitting — really.** Don't binge five in a night. The gap between sessions is where memory consolidates, and it's exactly what the next lesson's review quiz tests. Hungry for more is the perfect place to stop.
 - **Start each sitting in a fresh session.** Everything the tutor needs to remember lives in `learning/` — a brand-new session picks up exactly where the last one left off.
-- **Do the typing yourself.** When the tutor dictates a command, you run it in your terminal. When it leaves `TODO` blanks, fill them in your editor and hit save — it's watching the file, not the chat.
+- **Do the typing yourself.** When the tutor dictates a command, you run it in your terminal. When today's 20% is yours, write it in your editor and hit save — it's watching the file, not the chat. Tiny `TODO` holes are not the default.
 - **Answer quizzes from your head, in your own words.** Don't look it up first. A wrong answer isn't a failure — it's the data that decides what gets taught next.
 - **Life happens — bring it to the lesson.** Broke something on your own? Say so; that's a lesson, and a good one. Want a feature that isn't in the plan? Ask; the plan is a living backlog, not a contract.
 - **Read your `learning/` files anytime; let the lessons write them.** Graph statuses only move on demonstrated evidence — promoting yourself to `understood` by hand just cheats the quizzes that keep you honest.
@@ -80,6 +80,7 @@ Copied skills don't auto-update — re-run the clone + copy to pick up new versi
 - Predict before you run. A wrong prediction is the best teacher you'll meet.
 - Quizzes come from *your* graph — you're never re-quizzed on what you've already demonstrated (and still remember).
 - Prefer system-story and machine-level understanding over syntax for its own sake — making it run is glue, not the destination.
+- The learner types the 20%. Tiny TODOs are not proof of encoding.
 - No mystery boxes: every file in your repo is either explained or explicitly parked. When a scaffold dumps fifteen files into your folder, you get the tour before you build on them.
 - **Never ship a single line of code you cannot explain.**
 

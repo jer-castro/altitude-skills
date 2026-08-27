@@ -113,4 +113,4 @@ Create `learning/plan.md`:
 ...
 ```
 
-Close with: the plan is the map, `/next-lesson` walks it one small step at a time — and the pace is deliberately slow, because the goal is that at the end they can explain how every part of their app works. **Never ship a line of code you can't explain.**
+Close with: the plan is the map, `/next-lesson` walks it one small step at a time — and the pace is deliberately slow, because the goal is that at the end they can explain how every part of their app works. If `learning/project.md` has no Teaching section, append `authorship-policy: zpd` and `grain: right`. **Never ship a line of code you can't explain.**

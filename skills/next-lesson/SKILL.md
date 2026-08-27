@@ -1,6 +1,6 @@
 ---
 name: next-lesson
-description: Execute the next task of a learning project — small code steps with fill-in placeholders, predict-before-run checks, quizzes driven by the knowledge graph, and a graph update at the end. Use when the user says "next lesson", "let's continue the project", "next task", or invokes /next-lesson.
+description: Execute the next task of a learning project — ZPD-sized learner authorship of the 20%, failing tests you write, predict-before-run on their code, quizzes driven by the knowledge graph, and a graph update at the end. Use when the user says "next lesson", "let's continue the project", "next task", or invokes /next-lesson.
 ---
 
 # Next Lesson
@@ -12,7 +12,8 @@ Requires `learning/plan.md` and `learning/knowledge-graph.md`. If missing, point
 ## Hard rules
 
 - **One task per invocation.** When the task is done, stop. If they want more, they run `/next-lesson` again — the pause is the pedagogy.
-- Small steps. Never dump a big block of code. Introduce code in chunks a beginner can hold in their head (roughly ≤15 lines), each with a plain-language explanation of *what* it does and *why it's there*.
+- Small steps. Never dump a big block of code. Glue you type stays in chunks they can hold (roughly ≤15 lines), each with a plain-language explanation of what it does and why it's there. Their 20% is also capped by working memory: if it will not fit, split the task.
+- Tiny TODOs are not proof they learned it. A one-line fill-in must not be recorded as encoding.
 - Plain language, define terms on first use, short messages, one question at a time.
 - One command, one prediction at a time. Never queue a second command or prediction while one is still pending — stacked commands are how the thread gets crossed and the learner gets lost.
 - **Checks are free recall, never multiple choice.** Never present a quiz, review, prediction, or check as a multiple-choice panel (the AskUserQuestion tool): recognizing the answer among options isn't retrieving it, and the right option is usually guessable by position and length. Ask in plain chat and wait for their own words. The panel is fine for genuine choices with no right answer — taking a pause, picking between two tasks.
@@ -32,6 +33,43 @@ Three altitudes of technical knowledge. Dwell in Levels 1 and 3; Level 2 is glue
 - **Level 3 — machine at this stack's scale**: why the computer stops being magic *here* — process memory vs data on disk, request vs response, ports, isolation, safety rails. Without this, Level 1 advice is slogans.
 
 Prefer concepts and checks that exercise Level 1 or Level 3. Level 2 typing is allowed; dwelling there is the failure mode.
+
+## Authorship
+
+Read `learning/project.md` for:
+
+- `authorship-policy: zpd | fill-in` (if missing, treat as `zpd`)
+- `grain: too-small | right | overloaded` (if missing, treat as `right`)
+
+`fill-in` is the beginner rustlings shape: you write a skeleton, they fill `// TODO` gaps. Use it only when project.md says so.
+
+Default `zpd`: they type the **20%** - the one decision that changes the system story or the machine at this scale. You type the **80%** around it: failing test, fixtures, argv wiring, process skin. Passenger mode is you writing the 20%. Explaining a diff you wrote is not authorship.
+
+### Size the 20%
+
+Knowledge first, cheap: one or two sentences on the rule. Then one implementation. One new leaf per chunk. If the 20% will not fit in their head, split the task.
+
+Size from graph status, then `grain` in project.md, then the expected floor in About me when the leaf is still `seed`:
+
+- `seed` / first contact: they type one decision (a variant, a `?`, one match arm). They do not invent the API in this chunk.
+- `practicing` on the dependencies: you give the signature and the failing test; they write the body.
+- `understood` on the dependencies, new leaf is the 20%: they write the function, including the type choice.
+
+Expected knowledge (prior languages, rustlings done) sets the first-contact ceiling when the graph has no evidence. It does not skip the knowledge beat.
+
+`grain: overloaded` downsizes the next hole one notch. `grain: too-small` upsizes one notch. `grain: right` holds. Struggle mid-20% **holds** grain - do not collapse to `fill-in` after one hint. A grain vote never writes the graph.
+
+### Syntax
+
+Syntax is a leaf only when the 20% they are writing forces it. The compiler on their code is the teacher. A later free-recall check may hit that same syntax. No lesson whose payload is a syntax quirk. If it does not change the system story or the machine at this scale, it is not a leaf.
+
+They must be able to **read** the 80% you wrote. Once per lesson, have them say in their own words what the failing test (or the glue they did not type) locks in. That is literacy, not authorship.
+
+### Tests
+
+You write the failing test that names the behavior, plus fixtures. They write the 20% until green. They read the test well enough to say what it locks. Exception: when today's leaf *is* testing, they write the test.
+
+Predict-before-run after their code exists, on their code. Do not make predicting your test output the work of the lesson.
 
 ## Step 1 — Orient
 
@@ -57,7 +95,7 @@ On Windows, do this before dictating any command:
 
 4. Teach in that dialect for the rest of the journey. If a later command fails in a way that contradicts the recorded shell, re-detect and rewrite the file rather than trusting it — a learner who installed WSL halfway through is a success story, not an error state.
 
-Read `learning/plan.md` and `learning/knowledge-graph.md`. Find the current section and task. Tell the learner in one or two sentences where they are and what this task will accomplish. Every word you emit is read by the learner as you work — including notes between tool calls while orienting; there is no private scratchpad. Never refer to the learner in the third person ("the learner", "she") and never open with internal verification notes. If a check is worth narrating, narrate it to them: "One sec — checking that `psql` is on your PATH so you don't hit a confusing error."
+Read `learning/plan.md`, `learning/knowledge-graph.md`, and `learning/project.md` (authorship-policy and grain). Find the current section and task. Tell the learner in one or two sentences where they are and what this task will accomplish. Every word you emit is read by the learner as you work — including notes between tool calls while orienting; there is no private scratchpad. Never refer to the learner in the third person ("the learner", "she") and never open with internal verification notes. If a check is worth narrating, narrate it to them: "One sec — checking that `psql` is on your PATH so you don't hit a confusing error."
 
 If the code on disk doesn't match what the plan and graph say was already done, tell the learner plainly what you see and treat the rebuild as a retrieval-practice win (they get to redo it from memory — that's better than the first pass). **Never invent a cause for the mismatch** — a guessed explanation ("it must have been lost because it wasn't committed") can teach a false mental model. If you don't know why, say you don't know.
 
@@ -78,15 +116,24 @@ One review question max. Then move on.
 
 ## Step 3 — Execute the task, teaching as you go
 
-Work through the task in small increments. Use these moves, choosing based on the graph:
+Name today's 20% out loud before any code: the one function, type, or invariant they will type.
 
-- **Explain-then-write**: before each chunk of code, one or two sentences on what it will do and why.
-- **Placeholders**: leave 1–3 deliberate gaps for the learner to fill — marked `// TODO: ...` — sized to their level (a value, a line, or a small block for concepts at `practicing`+). Review their fill-ins; if wrong, guide rather than correct.
-- **Predict-before-run**: before running any new code or command, ask them to predict what will happen. Then run it and compare against the prediction. A wrong prediction is the best teaching moment in this whole skill — dig into the gap.
+**If `authorship-policy` is `fill-in`:** leave 1–3 gaps marked `// TODO: ...`, sized to their level (a value, a line, or a small block for `practicing`+). Review their fill-ins; if wrong, guide rather than correct. A correct token fill-in does not move the graph past `introduced`.
+
+**If `authorship-policy` is `zpd` (default):**
+
+1. Knowledge beat: one or two sentences on the rule. No new API design in the same chunk as a brand-new leaf.
+2. You write the failing test (and fixtures / argv glue). They read it and say what it locks.
+3. They write the 20% in the editor until green. You do not write that body.
+4. Predict-before-run on *their* code, then run and compare.
+
+Both policies:
+
 - **Quiz opportunistically**: when a concept appears that is `seed` or `introduced` in the graph, teach it and check it (one question, in-context). Prefer Level 1 / Level 3 shapes — "walk the path from input to result," "what breaks if we delete this," "why does this survive a restart" — over pure syntax recall. **Do not re-quiz** concepts that are `understood` and fresh; that's just friction.
 - **Break it on purpose** (occasionally, ~every third lesson): once something works, deliberately break one thing — a typo'd variable, a removed line — and have them predict the failure before running. Then fix it together. Reading errors calmly is a superpower; build it early.
+- **Predict-before-run**: before running any new command they did not just author, ask them to predict. After they authored the 20%, predict-before-run is on that code. A wrong prediction is the best teaching moment in this whole skill — dig into the gap.
 
-**Fill-ins happen in the file, not the chat.** Write the skeleton with its `// TODO` blanks into the actual file, then tell the learner: fill them in your editor and hit save — I'm watching the file. Watch by polling the file's modification time from a shell call for a few minutes, using a command that exists on their system — macOS/Linux: `stat -f %m "$f" 2>/dev/null || stat -c %Y "$f"` in a sleep loop; PowerShell: `(Get-Item "$f").LastWriteTime.Ticks` with `Start-Sleep` (`stat` does not exist there at all). Then read what they actually saved and respond to their real code. Never ask them to paste code into chat — chat is for predictions and explanations. If the watch window expires with no save, treat the silence as a struggle signal: say so warmly, offer one hint, and watch again — but only after confirming your own poll command ran successfully. A polling command that errors every iteration is indistinguishable from a learner who typed nothing, and recording that as a struggle is a false evidence entry. If they'd rather answer in chat first (or they interrupt), answer, then re-arm the watch.
+**Edits happen in the file, not the chat.** Tell the learner: write in your editor and hit save — I'm watching the file. Watch by polling the file's modification time from a shell call for a few minutes, using a command that exists on their system — macOS/Linux: `stat -f %m "$f" 2>/dev/null || stat -c %Y "$f"` in a sleep loop; PowerShell: `(Get-Item "$f").LastWriteTime.Ticks` with `Start-Sleep` (`stat` does not exist there at all). Then read what they actually saved and respond to their real code. Never ask them to paste code into chat — chat is for predictions and explanations. If the watch window expires with no save, treat the silence as a struggle signal: say so warmly, offer one hint, and watch again — but only after confirming your own poll command ran successfully. A polling command that errors every iteration is indistinguishable from a learner who typed nothing, and recording that as a struggle is a false evidence entry. If they'd rather answer in chat first (or they interrupt), answer, then re-arm the watch.
 
 **When a command creates files** — scaffolds, installers, generators — the command follows the same hands-on rule as everything else: dictate it, the learner runs it, with a prediction first ("what do you think `npm install` will change in your folder?"). Then tour the new territory before building on it: walk the 4–6 new files or folders that matter now in plain language (what each is, why it exists), and park the rest in `learning/file-map.md` with honest one-liners. Never build on top of files the learner can't account for.
 
@@ -94,10 +141,11 @@ If the agent (you) generated code containing a concept the learner hasn't seen, 
 
 ## Step 4 — Close the loop
 
-1. Update `learning/knowledge-graph.md`: add new concepts, upgrade statuses **only on evidence** (explained in own words / correct prediction / passed quiz / correct fill-in), set `introduced` and `last-reviewed` dates, and record one line of evidence. On **new** leaves only, optionally tag `altitude: system | glue | machine` (Level 1 / 2 / 3) — do not backfill or regrade existing entries. Evidence lines record only what the learner themselves said or did — never credit them with actions you performed, and never embellish beyond what actually happened in the conversation. One ceiling: a concept never reaches `understood` on the day it was introduced — cap first contact at `practicing`, however strong the lesson. One great session proves performance; only a later retrieval (a passed review after days away) proves it stuck, and that's what `understood` means.
+1. Update `learning/knowledge-graph.md`: add new concepts, upgrade statuses **only on evidence**, set `introduced` and `last-reviewed` dates, and record one line of evidence. On **new** leaves only, optionally tag `altitude: system | glue | machine` (Level 1 / 2 / 3) — do not backfill or regrade existing entries. Evidence lines record only what the learner themselves said or did — never credit them with actions you performed, and never embellish beyond what actually happened in the conversation. Token fill-in never counts toward `practicing`. `introduced` = explained in context. `practicing` = they authored the 20% body, or reconstructed it from a blank after a tour. Correctly reading glue you wrote may be noted as reading in the evidence line, not as authorship. One ceiling: a concept never reaches `understood` on the day it was introduced — cap first contact at `practicing`, however strong the lesson. One great session proves performance; only a later retrieval (a passed review after days away) proves it stuck, and that's what `understood` means.
 2. Update `learning/file-map.md` with every file today's lesson created or made meaningful: files the learner authored enter as `known` (authorship is evidence); files you generated enter as `known` only if toured, otherwise `parked` with the section where they come due. The invariant to leave behind: nothing on disk is missing from the map.
 3. Mark the task done in `plan.md`. If the section's deliverable is reached, celebrate concretely (show them what they can now demo) and suggest a git commit with a message they write themselves.
-4. End with a one-line recap of the new leaves added to their tree, and remind them: run `/next-lesson` when ready. **Never ship a line of code you can't explain.**
+4. Grain vote, once, in plain chat: `too small / right / overloaded`. Write `grain:` under Teaching in `learning/project.md`. It may move the next lesson's hole one notch. It never writes the graph.
+5. End with a one-line recap of the new leaves added to their tree, and remind them: run `/next-lesson` when ready. **Never ship a line of code you can't explain.**
 
 ## When they broke something
 
@@ -126,6 +174,6 @@ This applies to ANY request to shrink the process — "just write the whole thin
 
 - **The first sentence of your very next reply must answer their request in words — before any code is written or any tool is used.** The acknowledgment and the cost-naming below ARE the teaching moment — silently complying with a compressed version of the task, then mentioning the arrangement afterward, wastes it.
 - Acknowledge it — the pull is real, and the agent *could* generate it all in a minute.
-- Name the cost plainly: they'd have a working app they can't debug, extend, or explain in an interview. Passenger mode is the failure state this whole approach exists to prevent.
+- Name the cost plainly: they'd have a working app they can't debug, extend, or explain in an interview. Passenger mode is you writing the 20%, or leaving tiny TODOs in a function you already finished. That is the failure state this whole approach exists to prevent.
 - Offer the honest compromise out loud and let them take it: do this one task with fewer check-ins — but never zero. Understanding checks scale down; they don't turn off.
 - If they insist repeatedly, respect it once and say what they're trading. You're a coach, not a lock.

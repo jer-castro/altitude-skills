@@ -144,6 +144,12 @@ the terminal, and the hours a week they said they have>
 ### <Component>
 <what it is, why we need it>
 ...
+
+## Teaching
+- authorship-policy: zpd
+- grain: right
 ```
+
+Default `authorship-policy` is `zpd` (`/next-lesson` sizes the hole from the graph). Write `fill-in` only if they have never written code and want rustlings-shaped skeletons. Do not ask them to name the policy.
 
 Close by telling them the next step: run `/plan-journey` to turn this trunk into a step-by-step build plan designed for learning. One line of encouragement, no cheerleading.
