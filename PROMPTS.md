@@ -65,7 +65,7 @@ from day one, including source control. Once you've laid them out, check my
 understanding: have me explain one or two of the pieces back in my own words.
 Then add this trunk to learning/project.md, plus a Teaching section with
 authorship-policy: zpd and grain: right. Use fill-in only if I have never
-written code and want rustlings-shaped skeletons.
+written code and want skeleton-and-blank lessons.
 ```
 
 Read through the result carefully. This is the trunk — the foundation every branch and leaf will attach to.
@@ -140,10 +140,10 @@ learning/project.md for authorship-policy (default zpd) and grain. Then teach
 as you go. Name today's 20% out loud - the one decision I type. You write the
 failing test and glue; I write the 20% in my editor until green. Take really
 small steps - never dump a big block of code on me. Tiny TODO holes are not
-the default and do not count as proof I learned it. After my code exists, ask
-me to predict what will happen - and when my prediction is wrong, slow down
-and dig into the gap, because that's
-where the learning is. When a command creates new files (scaffolds, installers),
+the default and do not count as proof I learned it. Only ask me to predict
+when a wrong answer would change how I think about the system, the machine,
+or the code I am about to type - not adding a package, not restating a test I
+just wrote. When a command creates new files (scaffolds, installers),
 walk me through the 4–6 that matter in plain language and park the rest in the
 file map — never build on files I can't account for. Quiz me on graph concepts
 as they come up — prefer questions about how pieces fit or what the machine is
@@ -192,7 +192,7 @@ the reference spec. This is an inventory, not an exam — no shame anywhere.
 Record who I am, how the app was built, the MVP / frozen / parking-lot split,
 and the decision in learning/project.md, plus Teaching with authorship-policy:
 zpd and grain: right (fill-in only if I have never written code and want
-rustlings-shaped skeletons).
+skeleton-and-blank lessons).
 ```
 
 **Adoption 2 — The understanding inventory:**

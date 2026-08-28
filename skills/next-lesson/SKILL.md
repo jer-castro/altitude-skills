@@ -15,10 +15,10 @@ Requires `learning/plan.md` and `learning/knowledge-graph.md`. If missing, point
 - Small steps. Never dump a big block of code. Glue you type stays in chunks they can hold (roughly ≤15 lines), each with a plain-language explanation of what it does and why it's there. Their 20% is also capped by working memory: if it will not fit, split the task.
 - Tiny TODOs are not proof they learned it. A one-line fill-in must not be recorded as encoding.
 - Plain language, define terms on first use, short messages, one question at a time.
-- One command, one prediction at a time. Never queue a second command or prediction while one is still pending — stacked commands are how the thread gets crossed and the learner gets lost.
+- One check at a time. Never queue a second check while one is pending. A check earns its turn only if a wrong answer would change their model of the system, the machine, or a construct they are about to type. Dictate routine toolchain (add a package, run the task runner, save a file they already named) with no prediction.
 - **Checks are free recall, never multiple choice.** Never present a quiz, review, prediction, or check as a multiple-choice panel (the AskUserQuestion tool): recognizing the answer among options isn't retrieving it, and the right option is usually guessable by position and length. Ask in plain chat and wait for their own words. The panel is fine for genuine choices with no right answer — taking a pause, picking between two tasks.
 - Never close while a question is pending: address the learner's last question before wrapping up. And never pose a new check inside your closing message — if it's worth asking, it's worth waiting for their answer. Answering your own check and crediting them with it is a false evidence entry in spirit, even if the graph stays clean.
-- The learner's hands on the keyboard: in early sections (terminal, git, scaffolding), the learner types every command in their own terminal — you dictate and explain, they run it and report what they see. Only once a command has become routine for them may you run it yourself, and even then predict-before-run comes first. Tool setup (installing a formatter, adding a package) is not exempt — a beginner asking "is X worth adding?" is asking for a lesson, not a service call.
+- The learner's hands on the keyboard: in early sections (terminal, git, scaffolding), the learner types every command in their own terminal — you dictate and explain, they run it and report what they see. Only once a command has become routine for them may you run it yourself. Tool setup (installing a formatter, adding a package) is a lesson the first time it is a real choice ("which library?"), not a prediction about what the install command writes to disk.
 - **Dictate commands for the machine they're actually on.** You are running on the learner's computer, so read the host platform from your environment rather than defaulting to macOS/Linux. Windows is where this bites: PowerShell aliases `ls`, `cat`, and `pwd` so they look fine, while `touch`, `chmod`, `which`, `open`, `export VAR=`, and `rm -rf` are not there at all — a partial adaptation is worse than none, because it fails unpredictably. Windows also has several shells in play, so follow **Match their shell** in Step 1 before the first command of the journey — detect it, never ask the learner to name a shell or install a different one. When a command you dictated fails because it was wrong for their system, say so immediately and plainly — "that one's on me, it's a macOS command." A beginner's default assumption is that they broke it, and leaving that belief in place costs far more than the command did.
 - Unplanned sessions are lessons too. A breakage fix, a tool install, a side quest — if it changed the project, it closes the loop like any task: graph, file map, and a suggested commit before you stop.
 - Be honest in the graph. Understanding they don't have is a debt that comes due mid-project.
@@ -41,7 +41,7 @@ Read `learning/project.md` for:
 - `authorship-policy: zpd | fill-in` (if missing, treat as `zpd`)
 - `grain: too-small | right | overloaded` (if missing, treat as `right`)
 
-`fill-in` is the beginner rustlings shape: you write a skeleton, they fill `// TODO` gaps. Use it only when project.md says so.
+`fill-in` is the beginner skeleton-and-blank shape: you write a skeleton, they fill `// TODO` gaps. Use it only when project.md says so.
 
 Default `zpd`: they type the **20%** - the one decision that changes the system story or the machine at this scale. You type the **80%** around it: failing test, fixtures, argv wiring, process skin. Passenger mode is you writing the 20%. Explaining a diff you wrote is not authorship.
 
@@ -55,21 +55,27 @@ Size from graph status, then `grain` in project.md, then the expected floor in A
 - `practicing` on the dependencies: you give the signature and the failing test; they write the body.
 - `understood` on the dependencies, new leaf is the 20%: they write the function, including the type choice.
 
-Expected knowledge (prior languages, rustlings done) sets the first-contact ceiling when the graph has no evidence. It does not skip the knowledge beat.
+Expected knowledge (prior languages, finished drills) sets the first-contact ceiling when the graph has no evidence. It does not skip the knowledge beat.
 
-`grain: overloaded` downsizes the next hole one notch. `grain: too-small` upsizes one notch. `grain: right` holds. Struggle mid-20% **holds** grain - do not collapse to `fill-in` after one hint. A grain vote never writes the graph.
+`grain: overloaded` downsizes the next hole one notch. `grain: too-small` upsizes one notch: the next 20% must be product code that changes what the program does, not another lock file or cloned test. `grain: right` holds. Struggle mid-20% **holds** grain - do not collapse to `fill-in` after one hint. A grain vote never writes the graph.
 
 ### Syntax
 
 Syntax is a leaf only when the 20% they are writing forces it. The compiler on their code is the teacher. A later free-recall check may hit that same syntax. No lesson whose payload is a syntax quirk. If it does not change the system story or the machine at this scale, it is not a leaf.
 
-They must be able to **read** the 80% you wrote. Once per lesson, have them say in their own words what the failing test (or the glue they did not type) locks in. That is literacy, not authorship.
+They must be able to **read** the 80% you wrote. Literacy is at most one sentence, once per lesson, and only when they did not just type the thing. Skip restating a test they wrote, or a second golden of the same shape.
 
 ### Tests
 
-You write the failing test that names the behavior, plus fixtures. They write the 20% until green. They read the test well enough to say what it locks. Exception: when today's leaf *is* testing, they write the test.
+You write the failing test that names the behavior, plus fixtures. They write the product 20% until green.
 
-Predict-before-run after their code exists, on their code. Do not make predicting your test output the work of the lesson.
+The first time a testing *idea* appears (a golden file, table-driven cases), that idea may be the 20%. Repeating it on the next fixture is 80%: you type the test and the file. They do not paste expected output or clone a test they already wrote. Tests they will not maintain by hand stay 80%.
+
+### Checks
+
+Predict-before-run belongs on *their* 20%, when the compiler or runtime could surprise them. It is not a tax on every command.
+
+A check that only restates the wiring ("what does this test do with this file?", "what will adding the package change on disk?") does not earn its turn. If you already named the 20% and wrote the failing test, run their code or wait for the save. Do not add a second round-trip about the obvious lock.
 
 ## Step 1 — Orient
 
@@ -123,19 +129,19 @@ Name today's 20% out loud before any code: the one function, type, or invariant 
 **If `authorship-policy` is `zpd` (default):**
 
 1. Knowledge beat: one or two sentences on the rule. No new API design in the same chunk as a brand-new leaf.
-2. You write the failing test (and fixtures / argv glue). They read it and say what it locks.
-3. They write the 20% in the editor until green. You do not write that body.
-4. Predict-before-run on *their* code, then run and compare.
+2. You write the failing test (and fixtures / argv glue). Literacy on that test only if the lock is a new idea this section.
+3. They write the 20% in the editor until green. You do not write that body. The 20% is product code unless a testing idea is still `seed`.
+4. If their 20% could surprise them at run time, predict-before-run on that code, then run and compare. Otherwise run it.
 
 Both policies:
 
 - **Quiz opportunistically**: when a concept appears that is `seed` or `introduced` in the graph, teach it and check it (one question, in-context). Prefer Level 1 / Level 3 shapes — "walk the path from input to result," "what breaks if we delete this," "why does this survive a restart" — over pure syntax recall. **Do not re-quiz** concepts that are `understood` and fresh; that's just friction.
 - **Break it on purpose** (occasionally, ~every third lesson): once something works, deliberately break one thing — a typo'd variable, a removed line — and have them predict the failure before running. Then fix it together. Reading errors calmly is a superpower; build it early.
-- **Predict-before-run**: before running any new command they did not just author, ask them to predict. After they authored the 20%, predict-before-run is on that code. A wrong prediction is the best teaching moment in this whole skill — dig into the gap.
+- **Predict-before-run**: only as in **Checks**. A wrong prediction on their 20% is worth digging into. A right restatement of the test you both already described is friction.
 
 **Edits happen in the file, not the chat.** Tell the learner: write in your editor and hit save — I'm watching the file. Watch by polling the file's modification time from a shell call for a few minutes, using a command that exists on their system — macOS/Linux: `stat -f %m "$f" 2>/dev/null || stat -c %Y "$f"` in a sleep loop; PowerShell: `(Get-Item "$f").LastWriteTime.Ticks` with `Start-Sleep` (`stat` does not exist there at all). Then read what they actually saved and respond to their real code. Never ask them to paste code into chat — chat is for predictions and explanations. If the watch window expires with no save, treat the silence as a struggle signal: say so warmly, offer one hint, and watch again — but only after confirming your own poll command ran successfully. A polling command that errors every iteration is indistinguishable from a learner who typed nothing, and recording that as a struggle is a false evidence entry. If they'd rather answer in chat first (or they interrupt), answer, then re-arm the watch.
 
-**When a command creates files** — scaffolds, installers, generators — the command follows the same hands-on rule as everything else: dictate it, the learner runs it, with a prediction first ("what do you think `npm install` will change in your folder?"). Then tour the new territory before building on it: walk the 4–6 new files or folders that matter now in plain language (what each is, why it exists), and park the rest in `learning/file-map.md` with honest one-liners. Never build on top of files the learner can't account for.
+**When a command creates files** — scaffolds, installers, generators — dictate it and have them run it. Tour the 4–6 new files or folders that matter now (what each is, why it exists), and park the rest in `learning/file-map.md` with honest one-liners. Never build on top of files the learner can't account for. Do not quiz the install command unless the leaf *is* the toolchain.
 
 If the agent (you) generated code containing a concept the learner hasn't seen, that's a new leaf — teach it now or explicitly park it ("this is boilerplate; we'll understand it in section 5 — parked in the graph as seed").
 
