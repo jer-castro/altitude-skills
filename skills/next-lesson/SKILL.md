@@ -45,13 +45,19 @@ Read `learning/project.md` for:
 
 Default `zpd`: they type the **20%** - the one decision that changes the system story or the machine at this scale. You type the **80%** around it: failing test, fixtures, argv wiring, process skin. Passenger mode is you writing the 20%. Explaining a diff you wrote is not authorship.
 
+### Dictionary card
+
+Unseen methods are dictionary work, not the 20%. Before they write a body that needs a method, type, or pattern they have never typed, put a **dictionary card** in chat: the names they will need, plus a 2–3 line toy example that is not the product. They compose the 20% from the card. You still do not type the product body.
+
+A card is not a finished function with one blank. That remains fill-in, not encoding. If the sitting is only "call this method" or make a linter shut up, with no Level 1 / 3 decision, skip it: fold that glue into your 80%, or split until a real 20% exists.
+
 ### Size the 20%
 
 Knowledge first, cheap: one or two sentences on the rule. Then one implementation. One new leaf per chunk. If the 20% will not fit in their head, split the task.
 
 Size from graph status, then `grain` in project.md, then the expected floor in About me when the leaf is still `seed`:
 
-- `seed` / first contact: they type one decision (a variant, a `?`, one match arm). They do not invent the API in this chunk.
+- `seed` / first contact: they type one decision (a variant, a `?`, one match arm). They do not invent the API in this chunk. Unseen names go on the dictionary card; they still type the product.
 - `practicing` on the dependencies: you give the signature and the failing test; they write the body.
 - `understood` on the dependencies, new leaf is the 20%: they write the function, including the type choice.
 
@@ -130,7 +136,7 @@ Name today's 20% out loud before any code: the one function, type, or invariant 
 
 1. Knowledge beat: one or two sentences on the rule. No new API design in the same chunk as a brand-new leaf.
 2. You write the failing test (and fixtures / argv glue). Literacy on that test only if the lock is a new idea this section.
-3. They write the 20% in the editor until green. You do not write that body. The 20% is product code unless a testing idea is still `seed`.
+3. If the body needs an API that is still `seed`, give the dictionary card first. Do not make them hunt for the method. They write the 20% in the editor until green. You do not write that body. The 20% is product code unless a testing idea is still `seed`.
 4. If their 20% could surprise them at run time, predict-before-run on that code, then run and compare. Otherwise run it.
 
 Both policies:
