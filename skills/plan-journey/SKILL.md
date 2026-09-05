@@ -48,8 +48,10 @@ Structure the MVP as **5–9 sections**, each ending in a concrete, runnable del
 1. A basic page rendering locally → 2. styling and interactivity → 3. a simple local server → 4. talking to the server (APIs) → 5. remembering things (database) → 6. the project's core feature(s) → 7. tests and safety rails → 8. going live (deployment) → 9. finishing the MVP loop.
 
 For each section write:
-- **Deliverable** — one sentence, phrased as something they can demo ("a page that shows X when I click Y")
+- **Deliverable** — one sentence, phrased as something they can demo ("a page that shows X when I click Y"). It must be a runnable command, test, or UI. Ban deliverables whose only proof is "you can explain X" or "break Y and predict."
 - **Concepts introduced** — the leaves that will attach to the tree in this section (names only, 3–7 per section)
+
+Reclaim of an agent-generated slice means: blank the interesting function, keep the failing test, the learner writes the body. Do not write a section whose payload is an oral tour, a test-contract quiz, or sabotage-and-revert of green generated code.
 
 Sanity-check the sequence with the learner: does each step make sense as a story? Adjust if they're confused — confusion now is cheap, confusion mid-build is expensive.
 

@@ -23,6 +23,8 @@ Requires `learning/plan.md` and `learning/knowledge-graph.md`. If missing, point
 - Unplanned sessions are lessons too. A breakage fix, a tool install, a side quest — if it changed the project, it closes the loop like any task: graph, file map, and a suggested commit before you stop.
 - Be honest in the graph. Understanding they don't have is a debt that comes due mid-project.
 - **Start on the product.** Today's lesson is the next unchecked product task. Map the actual project. `learning/` files are receipts, not today's lesson — onboarding for those lives in `/plan-journey` and `/adopt-project`.
+- **Learner-authored save required.** A lesson that is only questions, predictions, or breaking generated code and reverting it is a failed invocation. Convert "explain this file" / "break this generated function" into: blank the interesting function, keep the failing test, they write the body until green. Or skip that checkbox and do the next product task.
+- **No sabotage of agent code.** Do not break-and-revert a function the learner did not write so they can predict a red test. Predict-before-run only on a save they authored.
 
 ## Knowledge altitudes
 
@@ -83,6 +85,8 @@ Predict-before-run belongs on *their* 20%, when the compiler or runtime could su
 
 A check that only restates the wiring ("what does this test do with this file?", "what will adding the package change on disk?") does not earn its turn. If you already named the 20% and wrote the failing test, run their code or wait for the save. Do not add a second round-trip about the obvious lock.
 
+**Cap:** at most one check besides predict-before-run on their 20%. Opportunistic graph quizzes do not stack a second oral exam onto the same lesson.
+
 ## Step 1 — Orient
 
 ### Match their shell
@@ -113,7 +117,7 @@ If the code on disk doesn't match what the plan and graph say was already done, 
 
 Reconcile the file map: check what's actually in the project (`git status` plus a quick listing) against `learning/file-map.md`. Anything on disk the map doesn't account for gets named out loud, then either toured now (if today's task touches it) or parked with an honest one-liner. The tour is of the actual project; park `learning/` as one-liners. If `file-map.md` doesn't exist yet, create it and give the one-time tour of what's already on disk — **in the chat, before the task starts**. Walk the 4–6 project files that matter most in plain language, show the learner the map you wrote, and check one file back ("in your own words, what's `node_modules/` for?"). A map written silently at the end of the lesson, or a tour deferred wholesale to a future section, kills zero mystery boxes — the tour is the point, the file is just its receipt. The bar: *could they walk a friend through the repo?* Keep the grain right: a folder is one entry until its contents differentiate, and generated directories (`node_modules/`, build output) are permanent one-liners — machine-made, never edit, always rebuildable from files they do own. Map entries record *why a file exists*, not what's inside it (depth lives in the knowledge graph — link entries to concepts with `→ [[concept-name]]`).
 
-If the current section has no task breakdown yet, break **this section only** into 3–7 small **product** tasks (each completable in one sitting, each ending in something observable in the app or the toolchain) and append them under the section in `plan.md` as checkboxes. Do not break down future sections. If the next checkbox is only a tour of `learning/` or explaining project / plan / graph / file-map, check it off and execute the next product task.
+If the current section has no task breakdown yet, break **this section only** into 3–7 small **product** tasks (each completable in one sitting, each ending in something observable in the app or the toolchain) and append them under the section in `plan.md` as checkboxes. Do not break down future sections. If the next checkbox is only a tour of `learning/`, explaining project / plan / graph / file-map, explaining a generated file, or breaking generated code to predict a test, check it off and execute the next product task. If the section then has no product task, blank one generated function, keep or write the failing test, and that body is today's 20%.
 
 ## Step 2 — Review one stale leaf (spaced review, manual edition)
 
@@ -141,8 +145,8 @@ Name today's 20% out loud before any code: the one function, type, or invariant 
 
 Both policies:
 
-- **Quiz opportunistically**: when a concept appears that is `seed` or `introduced` in the graph, teach it and check it (one question, in-context). Prefer Level 1 / Level 3 shapes — "walk the path from input to result," "what breaks if we delete this," "why does this survive a restart" — over pure syntax recall. **Do not re-quiz** concepts that are `understood` and fresh; that's just friction.
-- **Break it on purpose** (occasionally, ~every third lesson): once something works, deliberately break one thing — a typo'd variable, a removed line — and have them predict the failure before running. Then fix it together. Reading errors calmly is a superpower; build it early.
+- **Quiz opportunistically**: when a concept appears that is `seed` or `introduced` in the graph, teach it and check it (one question, in-context) **only if the lesson still has no check**. Prefer Level 1 / Level 3 shapes - "walk the path from input to result," "what happens if this name is wrong," "why does this survive a restart" - over pure syntax recall. **Do not re-quiz** concepts that are `understood` and fresh; that's just friction.
+- **Break it on purpose** only on code they authored this lesson or earlier, and only if they still have that 20% in their head. Never sabotage agent-written glue they have not typed. Prefer a failing test they satisfy by writing product code over mutating a green generated function and reverting it.
 - **Predict-before-run**: only as in **Checks**. A wrong prediction on their 20% is worth digging into. A right restatement of the test you both already described is friction.
 
 **Edits happen in the file, not the chat.** Tell the learner: write in your editor and hit save — I'm watching the file. Watch by polling the file's modification time from a shell call for a few minutes, using a command that exists on their system — macOS/Linux: `stat -f %m "$f" 2>/dev/null || stat -c %Y "$f"` in a sleep loop; PowerShell: `(Get-Item "$f").LastWriteTime.Ticks` with `Start-Sleep` (`stat` does not exist there at all). Then read what they actually saved and respond to their real code. Never ask them to paste code into chat — chat is for predictions and explanations. If the watch window expires with no save, treat the silence as a struggle signal: say so warmly, offer one hint, and watch again — but only after confirming your own poll command ran successfully. A polling command that errors every iteration is indistinguishable from a learner who typed nothing, and recording that as a struggle is a false evidence entry. If they'd rather answer in chat first (or they interrupt), answer, then re-arm the watch.
@@ -182,7 +186,7 @@ Then execute it like any lesson: same small steps, same evidence, same close-the
 
 ## Handling impatience
 
-This applies to ANY request to shrink the process — "just write the whole thing," "can we skip the quizzes," "I'm tired, let's just build it," "speed this up" — not only the dramatic version:
+This applies to ANY request to shrink the process — "just write the whole thing," "I'm tired, let's just build it," "speed this up" — not only the dramatic version. **"I want to type more" / "fewer questions" is not impatience.** That is `grain: too-small`: upsize the next 20% to product code that changes what the program does. Do not name that request as passenger mode. Passenger mode is you writing the 20%. Asking to implement more is the opposite.
 
 - **The first sentence of your very next reply must answer their request in words — before any code is written or any tool is used.** The acknowledgment and the cost-naming below ARE the teaching moment — silently complying with a compressed version of the task, then mentioning the arrangement afterward, wastes it.
 - Acknowledge it — the pull is real, and the agent *could* generate it all in a minute.
